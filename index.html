@@ -1,495 +1,151 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full options - รับรีโนเวท ต่อเติม ซ่อมแซม</title>
-    <style>
-        /* --- Google Fonts --- */
-        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap');
-
-        /* --- CSS Variables --- */
-        :root {
-            --primary-color: #004A7F;  /* สีน้ำเงินเข้ม */
-            --secondary-color: #FDB813; /* สีเหลือง/ทอง */
-            --dark-grey: #333333;
-            --light-grey: #f4f4f4;
-            --white-color: #ffffff;
-            --text-color: #4a4a4a;
-        }
-
-        /* --- General Styles --- */
-        body {
-            font-family: 'Kanit', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--text-color);
-            background-color: var(--white-color);
-            line-height: 1.7;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        section {
-            padding: 60px 0;
-        }
-
-        h1, h2, h3 {
-            color: var(--primary-color);
-            font-weight: 700;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2.2rem;
-        }
-
-        /* --- Header & Navigation --- */
-        header {
-            background: var(--white-color);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            flex-shrink: 0; 
-        }
-        .logo img {
-            max-height: 50px;
-            margin-right: 15px;
-        }
-
-        .nav-links {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--primary-color);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        /* --- Hamburger Menu Button --- */
-        .hamburger-btn {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 10px;
-        }
-        .hamburger-btn .bar {
-            display: block;
-            width: 25px;
-            height: 3px;
-            margin: 5px auto;
-            background-color: var(--primary-color);
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            background: linear-gradient(rgba(0, 74, 127, 0.8), rgba(0, 74, 127, 0.8)), url('http://googleusercontent.com/file_content/0') center/cover no-repeat;
-            color: var(--white-color);
-            padding: 120px 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            color: var(--white-color);
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-        }
-
-        .cta-buttons .btn {
-            margin: 10px;
-        }
-        
-        /* --- Buttons --- */
-        .btn {
-            text-decoration: none;
-            color: var(--white-color);
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-weight: 500;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: inline-block;
-        }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        .btn-primary {
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
-            font-weight: 700;
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            border: 2px solid var(--white-color);
-        }
-        
-        /* --- Other Sections --- */
-        .why-us-grid, .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .why-us-item {
-            background: var(--white-color);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-        
-        .service-card {
-            background: var(--light-grey);
-            padding: 30px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-        }
-        .service-card h3 {
-            border-left: 4px solid var(--secondary-color);
-            padding-left: 15px;
-        }
-        .service-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .service-card li {
-            padding-left: 5px;
-            margin-bottom: 5px;
-        }
-
-        .project-card {
-            background: var(--white-color);
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden; /* สำคัญมากสำหรับเอฟเฟคซูม */
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        .project-image-placeholder {
-            height: 220px;
-            background: #e0e0e0;
-            overflow: hidden; /* เพิ่มอีกชั้นเพื่อความแน่นอน */
-        }
-
-        /* === แก้ไข: เพิ่ม transition ให้รูปภาพ === */
-        .project-image-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease; /* เพิ่มบรรทัดนี้ */
-        }
-        
-        /* === เพิ่ม: เอฟเฟคตอนเอาเมาส์ชี้ === */
-        .project-card:hover .project-image-placeholder img {
-            transform: scale(1.05); /* ทำให้รูปขยาย 5% */
-        }
-        
-        .project-info {
-            padding: 20px;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .contact-details {
-            max-width: 550px;
-            margin: 0 auto;
-            padding: 30px 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-        }
-        .contact-details p {
-            word-break: break-all;
-        }
-
-        /* --- Footer --- */
-        footer {
-            background: var(--dark-grey);
-            color: var(--white-color);
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        /* --- Responsive Styles for Mobile --- */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-wrap: wrap;
-            }
-
-            .hamburger-btn {
-                display: block;
-                order: 3;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                text-align: center;
-                order: 4;
-                background-color: var(--white-color);
-                padding: 20px 0;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
-            .hero {
-                padding: 80px 0;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .cta-buttons {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ชำระเงิน - Prompt AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Noto Sans Thai', sans-serif; }
+    .step-circle {
+      background-color: #3b82f6; /* bg-blue-600 */
+      color: white;
+      width: 2.5rem; /* w-10 */
+      height: 2.5rem; /* h-10 */
+      border-radius: 9999px; /* rounded-full */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.25rem; /* text-xl */
+    }
+  </style>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
+<nav class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <a href="index.html"><h1 class="text-2xl font-bold text-blue-600">Prompt AI</h1></a>
+        </div>
+        <div class="hidden md:flex items-center space-x-4">
+          <a href="index.html" class="text-gray-600 hover:text-blue-600">หน้าแรก</a>
+          <a href="features.html" class="text-gray-600 hover:text-blue-600">ฟีเจอร์</a>
+          <a href="marketplace.html" class="text-gray-600 hover:text-blue-600">ตลาดกลาง Prompt</a>
+          <a href="pricing.html" class="text-gray-600 hover:text-blue-600">ราคา</a>
+          <a href="payment.html" class="text-blue-600 font-semibold border-b-2 border-blue-600">วิธีการสั่งซื้อ</a>
+          <a href="pricing.html" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">เริ่มต้นใช้งาน</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#home" class="logo">
-                    <img src="Logo2.jpg" alt="Logo">
-                    <span>Full options</span>
+  <div class="container mx-auto max-w-2xl py-12 px-4">
+    <div class="bg-white rounded-2xl shadow-xl p-8">
+
+      <div class="text-center mb-8">
+        <a href="index.html"><h1 class="text-3xl font-bold text-blue-600">Prompt AI</h1></a>
+        <p class="text-gray-600 mt-2">กรุณาทำตามขั้นตอนเพื่อชำระเงินและรับไฟล์</p>
+      </div>
+
+      <div class="bg-gray-50 rounded-lg p-4 mb-8 border">
+        <h2 class="font-bold text-lg">รายการของคุณ</h2>
+        <div class="flex justify-between items-center mt-2">
+          <p id="product-name" class="text-gray-700">ชุด Prompt การตลาดโซเชียลมีเดีย</p>
+          <p id="product-price" class="font-bold text-gray-900">99 บาท</p>
+        </div>
+      </div>
+
+      <div class="space-y-8">
+        <div class="flex items-start space-x-4">
+          <div class="step-circle">1</div>
+          <div>
+            <h2 class="text-xl font-bold text-gray-800">สแกน QR Code เพื่อชำระเงิน</h2>
+            <p class="text-gray-600 mb-4">ใช้แอปธนาคารของคุณเพื่อสแกน PromptPay QR Code ด้านล่าง</p>
+            <div class="bg-white p-4 border rounded-lg flex justify-center">
+              <img src="ดีไซน์ที่ยังไม่ได้ตั้งชื่อ.png" alt="QR Code for payment" class="w-full h-full">
+            </div>
+            <p class="text-center mt-2 text-sm text-gray-500">ชื่อบัญชี: นายพรอมพ์ เอไอ</p>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-4">
+          <div class="step-circle">2</div>
+          <div>
+            <h2 class="text-xl font-bold text-gray-800">แจ้งหลักฐานการโอนเพื่อรับไฟล์</h2>
+            <p class="text-gray-600 mb-4">หลังจากโอนเงินเรียบร้อยแล้ว **กรุณาส่งสลิป** มาให้เราทาง LINE เพื่อตรวจสอบและรับไฟล์สินค้าของคุณได้ทันที</p>
+            <a href="#" class="w-full text-center bg-green-500 text-white font-bold py-3 px-6 rounded-lg text-lg hover:bg-green-600 transition duration-300 flex items-center justify-center">
+              <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 11a1 1 0 112 0 1 1 0 01-2 0zm2-4a1 1 0 10-2 0v1a1 1 0 102 0V7z" clip-rule="evenodd"></path></svg>
+              ส่งสลิปทาง LINE ที่นี่
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-gray-200">
+        <div class="text-center">
+            <h3 class="text-xl font-bold text-gray-800">มีคำถามหรือต้องการความช่วยเหลือ?</h3>
+            <p class="text-gray-600 mt-2 mb-6">ติดต่อเราได้โดยตรงผ่านช่องทางด้านล่างนี้</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                
+                <a href="#" class="flex-1 text-center bg-green-500 text-white font-bold py-3 px-5 rounded-lg hover:bg-green-600 transition duration-300">
+                    สอบถามทาง LINE
                 </a>
-                
-                <button class="hamburger-btn" id="hamburger-btn">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </button>
-                
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="#home">หน้าหลัก</a></li>
-                    <li><a href="#services">บริการ</a></li>
-                    <li><a href="#portfolio">ผลงาน</a></li>
-                    <li><a href="#about">เกี่ยวกับเรา</a></li>
-                    <li><a href="#contact">ติดต่อเรา</a></li>
-                </ul>
-            </nav>
+
+                <a href="#" class="flex-1 text-center bg-blue-600 text-white font-bold py-3 px-5 rounded-lg hover:bg-blue-700 transition duration-300">
+                    สอบถามทาง Facebook
+                </a>
+
+                <a href="#" class="flex-1 text-center bg-indigo-500 text-white font-bold py-3 px-5 rounded-lg hover:bg-indigo-600 transition duration-300">
+                    เข้าร่วม Discord
+                </a>
+            </div>
         </div>
-    </header>
+      </div>
+      </div>
+  </div>
 
-    <main>
-
-        <section id="home" class="hero">
-            <div class="container">
-                <h1>เนรมิตพื้นที่ของคุณให้เหนือกว่า ด้วยบริการที่ใส่ใจทุกรายละเอียด</h1>
-                <p>ที่ Full options เราคือทีมผู้เชี่ยวชาญด้านการรีโนเวท ต่อเติม และซ่อมแซม ที่พร้อมเปลี่ยนทุกความต้องการของคุณให้กลายเป็นความจริง</p>
-                <div class="cta-buttons">
-                    <a href="#services" class="btn btn-secondary">ดูบริการของเรา</a>
-                    <a href="#contact" class="btn btn-primary">ประเมินราคาฟรี!</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="why-us">
-            <div class="container">
-                <h2>ทำไมต้องเลือกเรา?</h2>
-                <div class="why-us-grid">
-                    <div class="why-us-item">
-                        <h3>ทีมงานมืออาชีพ</h3>
-                        <p>ช่างฝีมือของเรา มีประสบการณ์ในวงการรวมกันกว่า 15 ปี การันตีผลงานคุณภาพทุกขั้นตอน</p>
-                    </div>
-                    <div class="why-us-item">
-                        <h3>ประเมินราคาฟรี</h3>
-                        <p>เรายินดีให้คำปรึกษาและเข้าประเมินหน้างานจริง พร้อมเสนอราคาอย่างโปร่งใส โดยไม่มีค่าใช้จ่ายใดๆ</p>
-                    </div>
-                    <div class="why-us-item">
-                        <h3>วัสดุคุณภาพ</h3>
-                        <p>เราคัดสรรเฉพาะวัสดุที่ได้มาตรฐาน มอก. มีความแข็งแรง ทนทาน เพื่อให้พื้นที่ของคุณสวยงามและคงทนยาวนาน</p>
-                    </div>
-                    <div class="why-us-item">
-                        <h3>รับประกันผลงาน</h3>
-                        <p>อุ่นใจด้วยการรับประกันงานซ่อมแซมสูงสุด 1 ปี  งานทำใหม่ 2 ปี เพื่อความพึงพอใจสูงสุดของคุณ</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="services">
-            <div class="container">
-                <h2>บริการของเรา</h2>
-                <div class="service-card">
-                    <h3>1. งานรีโนเวทและตกแต่งภายใน</h3>
-                    <ul>
-                        <li>✨ รีโนเวทใหม่ (New Renovation)</li>
-                        <li>✨ ตกแต่งภายใน (Interior Decoration)</li>
-                        <li>✨ งานบิ้วอิน (Built-in Furniture)</li>
-                        <li>✨ รีโนเวทบ้าน คอนโด ห้องน้ำ ห้องครัว</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>2. งานต่อเติม</h3>
-                    <ul>
-                        <li>✨ ต่อเติมครัวไทยหลังบ้าน</li>
-                        <li>✨ ต่อเติมห้องทำงาน ห้องอเนกประสงค์</li>
-                        <li>✨ ต่อเติมโรงจอดรถ</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>3. งานซ่อมแซมและติดตั้งระบบ</h3>
-                    <ul>
-                        <li>✨ ติดตั้งระบบน้ำ/ไฟ (Water/Electrical System Installation)</li>
-                        <li>✨ ซ่อมแซมหลังคารั่วซึมและดาดฟ้า</li>
-                        <li>✨ แก้ไขผนังร้าวและการทรุดตัว</li>
-                        <li>✨ งานทาสีใหม่ทั้งภายในและภายนอก</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>✨ ครบวงจรแบบ Full Options</h3>
-                    <p>เราพร้อมดูแลโครงการของคุณตั้งแต่ต้นจนจบ ตั้งแต่การให้คำปรึกษา ออกแบบ ไปจนถึงการก่อสร้างและส่งมอบงาน เพื่อให้คุณได้ผลลัพธ์ที่ดีที่สุดในที่เดียว</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="portfolio" style="background-color: var(--light-grey);">
-            <div class="container">
-                <h2>ผลงานของเรา</h2>
-                <div class="portfolio-grid">
-                    <div class="project-card">
-                        <div class="project-image-placeholder">
-                             <img src="1phot.png" alt="รีโนเวทคอนโดหรู">
-                        </div>
-                        <div class="project-info">
-                            <h4>จากพื้นที่โล่ง สร้างขึ้นเป็นห้องครัว พร้อมเคาน์เตอร์</h4>
-                            <p><strong>ประเภท:</strong> รีโนเวท | <strong>สถานที่:</strong> กรุงเทพมหานคร</p>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image-placeholder">
-                            <img src="2phot.png" alt="ต่อเติมบ้านเดี่ยว">
-                        </div>
-                        <div class="project-info">
-                            <h4>ต่อเติมห้องครัวหลังบ้าน</h4>
-                            <p><strong>ประเภท:</strong> ต่อเติม | <strong>สถานที่:</strong> กรุงเทพมหานคร</p>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image-placeholder">
-                            <img src="3phot.png" alt="รีโนเวทร้านกาแฟ">
-                        </div>
-                        <div class="project-info">
-                            <h4>ต่อเติมหลังคาหน้าบ้าน</h4>
-                            <p><strong>ประเภท:</strong> ต่อเติม | <strong>สถานที่:</strong> ชลบุรี</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about">
-            <div class="container">
-                <h2>เกี่ยวกับเรา</h2>
-                <div class="about-content">
-                    <div>
-                        <h3>เรื่องราวของเรา</h3>
-                        <p><strong>Full options</strong> ก่อตั้งขึ้นจากความหลงใหลในงานออกแบบและก่อสร้าง เราเริ่มต้นจากทีมงานเล็กๆ ที่มีความฝันเดียวกัน คือการสร้างสรรค์พื้นที่ที่ไม่ได้มีแค่ความสวยงาม แต่ยังต้องตอบโจทย์การใช้งานและเปี่ยมไปด้วยคุณภาพ</p>
-                    </div>
-                    <div>
-                        <h3>วิสัยทัศน์และพันธกิจ</h3>
-                        <ul>
-                            <li>ส่งมอบงานคุณภาพที่ได้มาตรฐานและตรงต่อเวลาเสมอ</li>
-                            <li>ดำเนินงานด้วยความซื่อสัตย์ โปร่งใส ตรวจสอบได้ทุกขั้นตอน</li>
-                            <li>พัฒนาทักษะและองค์ความรู้ของทีมงานอย่างสม่ำเสมอ</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        
-        <section id="contact" style="background-color: var(--light-grey);">
-            <div class="container">
-                 <h2>ติดต่อเรา</h2>
-                 <p style="text-align: center; max-width: 800px; margin: -20px auto 40px auto;">
-                    พร้อมเปลี่ยนไอเดียของคุณให้เป็นจริงแล้วหรือยัง? ทีมงานของเรายินดีให้คำปรึกษาฟรี!
-                </p>
-                 <div class="contact-details">
-                       <h3>ช่องทางการติดต่อ</h3>
-                       <p><strong>โทรด่วน:</strong> <a href="tel:0928141461">092 814 1461</a></p>
-                       <p><strong>คุยผ่านไลน์:</strong> <a href="https://line.me/R/ti/p/@799fsefq?oat_content=url&ts=07021953" target="_blank">@799fsefq</a></p>
-                       <p><strong>ส่งอีเมล:</strong> <a href="emailto:iffining@gmail.com">eiffining@gmail.com</a></p>
-                       <p><strong>พื้นที่ให้บริการ:</strong> กรุงเทพมหานคร, ปริมณฑล, ชลบุรี</p>
-                 </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Full options. All Rights Reserved.</p>
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Prompt AI</h3>
+          <p class="text-gray-400">ตลาดกลางสำหรับนักสร้าง Prompt มืออาชีพ</p>
         </div>
-    </footer>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">ลิงก์ด่วน</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white">หน้าแรก</a></li>
+            <li><a href="features.html" class="text-gray-400 hover:text-white">ฟีเจอร์</a></li>
+            <li><a href="marketplace.html" class="text-gray-400 hover:text-white">ตลาดกลาง Prompt</a></li>
+            <li><a href="pricing.html" class="text-gray-400 hover:text-white">ราคา</a></li>
+            <li><a href="contact.html" class="text-gray-600 hover:text-blue-600">ติดต่อเรา</a></li>
 
-    <script>
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const navLinks = document.getElementById('nav-links');
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">ติดต่อเรา</h3>
+          <p class="text-gray-400">อีเมล: support@promptai.com</p>
+          <p class="text-gray-400">โทร: 02-123-4567</p>
+        </div>
+      </div>
+      <div class="text-center text-gray-500 mt-8">
+        <p>&copy; 2025 Prompt AI. สงวนลิขสิทธิ์.</p>
+      </div>
+    </div>
+  </footer>
 
-        hamburgerBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    </script>
-    
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const productName = params.get('product') || 'ชุด Prompt การตลาดโซเชียลมีเดีย';
+        const productPrice = params.get('price') || '99 บาท';
+
+        document.getElementById('product-name').textContent = productName;
+        document.getElementById('product-price').textContent = productPrice;
+    });
+  </script>
 </body>
 </html>
